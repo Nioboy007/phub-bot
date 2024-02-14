@@ -43,8 +43,8 @@ if os.path.exists("downloads"):
 else:
     print("Unduhan Telah Dibuat")
 
-btn1 = InlineKeyboardButton("Cari Disini",switch_inline_query_current_chat="",)
-btn2 = InlineKeyboardButton("Masukan Grup", switch_inline_query="")
+btn1 = InlineKeyboardButton("Tap To Search 🤤",switch_inline_query_current_chat="",)
+btn2 = InlineKeyboardButton("Search In A Group💦", switch_inline_query="")
 
 active_list = []
 queue = []
@@ -64,7 +64,7 @@ def link_fil(filter, client, update):
 link_filter = filters.create(link_fil, name="link_filter")
 
 
-@app.on_message(~filters.edited & filters.incoming & filters.private, group=-1)
+@app.on_message(filters.incoming & filters.private, group=-1)
 async def must_join_channel(bot: Client, msg: Message):
     if not MUST_JOIN:  # Bukan member channel
         return
@@ -79,10 +79,10 @@ async def must_join_channel(bot: Client, msg: Message):
                 link = chat_info.invite_link
             try:
                 await msg.reply(
-                    f"Kamu Harus Gabung Channel Terlebih Dahulu.\n\n[klik disini]({link}) Untuk Gabung Dan Mulai Menggunakan Bot Ini. \n\nSetelah Bergabung Silahkan Ketik /start Kembali !",
+                    f"You must join our channel first.\n\n[click here]({link}) to join our channel before your..........💦🤭.\n\nAfter joining, please type /start again!",
                     disable_web_page_preview=True,
                     reply_markup=InlineKeyboardMarkup([
-                        [InlineKeyboardButton("✨ Gabung Channel ✨", url=link)]
+                        [InlineKeyboardButton("✨ Join Our Channel✨", url=link)]
                     ])
                 )
                 await msg.stop_propagation()
@@ -101,14 +101,14 @@ async def search(client, InlineQuery : InlineQuery):
         src = await api.search.search(query)#, ordering="mostviewed")
     except ValueError as e:
         results.append(InlineQueryResultArticle(
-                title="Video Tidak Ditemukan!",
-                description="Maaf! Video Tidak Ditemukan. Coba Lagi!!",
+                title="Video Not Found!",
+                description="Sorry! Video not found. Try Again!!",
                 input_message_content=InputTextMessageContent(
-                    message_text="Video Tidak Ditemukan!"
+                    message_text="Video Not Found!"
                 )
             ))
         await InlineQuery.answer(results,
-                            switch_pm_text="Hasil Pencarian",
+                            switch_pm_text="Results",
                             switch_pm_parameter="start")
             
         return
@@ -128,14 +128,14 @@ async def search(client, InlineQuery : InlineQuery):
             pornstars = "N/A"
             categories = "N/A"
             tags = "N/A"
-        msgg = (f"**JUDUL** : `{vid.title}`\n"
-                f"**DURASI** : `{vid.duration}`\n"
-                f"JUMLAH PENONTON : `{vid.views}`\n\n"
+        msgg = (f"**TITLE** : `{vid.title}`\n"
+                f"**DURATION** : `{vid.duration}`\n"
+                f"**VIEWES** : `{vid.views}`\n"
                 f"**{pornstars}**\n"
                 f"Kategori : {categories}\n\n"
                 f"{tags}"
                 f"Link : {vid.url}")
-
+	    
         msg = f"{vid.url}"
          
         results.append(InlineQueryResultArticle(
@@ -143,50 +143,50 @@ async def search(client, InlineQuery : InlineQuery):
             input_message_content=InputTextMessageContent(
                 message_text=msg,
             ),
-            description=f"Durasi : {vid.duration}\nJumlah Penonton : {vid.views}\nRating Video : {vid.rating}",
-            thumb_url=vid.thumb,
-            reply_markup=InlineKeyboardMarkup([[
-                InlineKeyboardButton("Tonton Diwebsite", url=vid.url),
+            description = f"Duration: {vid.duration}\nNumber of Viewers: {vid.views}\nVideo Rating: {vid.rating}",
+            thumb_url = vid.thumb,
+            reply_markup = InlineKeyboardMarkup([[
+                InlineKeyboardButton("Watch on Website", url=vid.url),
                 btn1
             ]]),
         ))
 
     await InlineQuery.answer(results,
-                            switch_pm_text="Hasil Pencarian",
+                            switch_pm_text="Search Results",
                             switch_pm_parameter="start")
 
-# Memulai Bot
+# Memulai Bot‌‌
 @app.on_message(filters.command("start"))
-async def start(client, message : Message):
+async def start(client, message: Message):
     value = str(message.chat.id)
     with open("member.txt", "a+") as file:
-        file.seek(0) # set position to start of file
-        lines = file.read().splitlines() # now we won't have those newlines
+        file.seek(0)  # set position to start of file
+        lines = file.read().splitlines()  # now we won't have those newlines
         if value in lines:
-          print(f"user {value} lagi make bot")
+            print(f"user {value} lagi make bot")
         else:
-          file.write(value + "\n")
-    await message.reply(f"Hai @{message.from_user.username},\n"
+            file.write(value + "\n")
+    await message.reply(f"𓂺Hai @{message.from_user.username},\n"
                         "━━━━━━━━━━━━━━━\n"
-                        "Saya Adalah Bot PornHub Indonesia\n"
+                        "Iam Here To Fulfill Your Ambitious Mind😻\n"
                         "━━━━━━━━━━━━━━━\n"
-                        "⚠️ Konten 18+\n"
-                        "- Jangan Spam Pada Bot\n"
-                        "- Tidak Diperuntukan Untuk Anak Dibawah Umur\n" 
-                        "- Tidak Bermaksud Menyebatkan Pornografi.\n"
-                        "- Ini Hanya Bot Dari Permintaan Orang Banyak.\n" 
+                        "- BEWARE Of 🔞, Use Me on your own risk\n"
+                        "- Spam Me, I sperm you😤\n"
+                        "- Not For Minors 🧒❌\n"
+                        "- Not Meant to promote Pornography.\n"
+                        "- This is just a bot from crowd requests.\n"
                         "━━━━━━━━━━━━━━━\n\n"
-			"Mari Bergabung Ke Channel @GarzProject\n\n"
-			"Note: Pilih Video Durasi Sebentar Agar Proses Unduhan Dapat Lebih Cepat!!!\n\n\n"
-                        "Klik Tombol Dibawah Ini Untuk Mencari:", reply_markup=InlineKeyboardMarkup([[btn1, btn2]]))
+                        "Let's Join the @botio_devs Channel\n\n"
+                        "Note: Select a short video so that the download process can be faster💨!!!\n\n\n"
+                        "Click the button below to 🔎 :", reply_markup=InlineKeyboardMarkup([[btn1, btn2]]))
     
 
 @app.on_message(link_filter)
 async def options(client, message : Message):
     print(message.text)
-    await message.reply("Apa Yang Anda Ingin Lakukan?", 
+    await message.reply("What do you want to do?", 
             reply_markup=InlineKeyboardMarkup([
-                [InlineKeyboardButton("Unduh", f"d_{message.text}"), InlineKeyboardButton("Tonton Di Web",url=message.text)]
+                [InlineKeyboardButton("Download", f"d_{message.text}"), InlineKeyboardButton("Watch on the web",url=message.text)]
             ])
             )
 
@@ -194,11 +194,11 @@ async def options(client, message : Message):
 @app.on_callback_query(filters.regex("^d"))
 async def download_video(client, callback : CallbackQuery):
     url = callback.data.split("_",1)[1]
-    msg = await callback.message.edit("Mengunduh...")
+    msg = await callback.message.edit("Downloading.........🥵")
     user_id = callback.message.from_user.id
 
     if "isjwhs" in active_list:
-        await callback.message.edit("Maaf, Anda Hanya Dapat Mengunduh Video Dalam Satu Waktu!")
+        await callback.message.edit("Sorry, you can only download videos at a time!🙁")
         return
     else:
         active_list.append(user_id)
@@ -211,13 +211,13 @@ async def download_video(client, callback : CallbackQuery):
         try:
             await run_async(ydl.download, [url])
         except DownloadError:
-            await callback.message.edit("Maaf, Terjadi Kesalahan...")
+            await callback.message.edit("Sorry, something went wrong...")
             return
 
 
     for file in os.listdir('.'):
         if file.endswith(".mp4"):
-            await callback.message.reply_video(f"{file}", caption="**Ini Adalah Video Yang Anda Minta Tuan**\n\nBot by:- @garzproject\n\nKami Butuh Biaya Sewa Server, Jika Anda Berkenan Untuk Terus Mendukung Silahkan Donasi Melalui saweria.co/tegarprayuda.",
+            await callback.message.reply_video(f"{file}", caption="**This is the video you asked**\n\nBot by:- @botio_devs.",
                                 reply_markup=InlineKeyboardMarkup([[btn1, btn2]]))
             os.remove(f"{file}")
             break
@@ -229,7 +229,7 @@ async def download_video(client, callback : CallbackQuery):
 
 
 @app.on_message(filters.command("cc"))
-async def download_video(client, message : Message):
+async def list_files(client, message : Message):
     files = os.listdir("downloads")
     await message.reply(files)
 
@@ -238,14 +238,14 @@ async def botsatats(_, message):
     users = open("member.txt").readlines()
     user = open("member.txt").read()
     total = len(users)
-    await message.reply_text(f"Total : {total} Pengguna")
+    await message.reply_text(f"Total : {total} Users")
     await message.reply_text(f"{user}")
 
 # Fitur broadcastttt
 @app.on_message(filters.command('bcast') & filters.user(SUDO))
 async def broadcast(_, message):
     if message.reply_to_message :
-        await message.reply_text("Memulai Broadcast")
+        await message.reply_text("Start a Broadcast")
         query = open("member.txt").readlines()
         for row in query:
            try: 
