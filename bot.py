@@ -1,12 +1,3 @@
-####################################
-# PornHub Telegram Bot by Garz Project
-# name : tegar prayuda
-# telegram channel : t.me/garzproject
-# telegram profile : t.me/tegarprayudaa
-# github profile : github.com/GarzProject
-# Copyright 2022 | Garz Project
-####################################
-
 import asyncio
 import os
 import youtube_dl
